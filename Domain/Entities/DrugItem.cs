@@ -1,4 +1,4 @@
-namespace DrugsBot.Domain.Entities;
+namespace Domain.Entities;
 
 /// <summary>
 /// Связь между препаратом и аптекой

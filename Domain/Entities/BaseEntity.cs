@@ -1,4 +1,4 @@
-namespace DrugsBot.Domain.Entities;
+namespace Domain.Entities;
 
 /// <summary>
 /// Базовый класс для всех сущностей домена, обеспечивающий сравнение по идентификатору.

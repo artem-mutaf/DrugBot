@@ -1,4 +1,4 @@
-namespace DrugsBot.Domain.ValueObjects;
+namespace Domain.ValueObjects;
 
 public class Address : BaseValueObject
 {

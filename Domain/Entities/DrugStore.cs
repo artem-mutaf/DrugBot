@@ -1,5 +1,5 @@
-using DrugsBot.Domain.ValueObjects;
-namespace DrugsBot.Domain.Entities;
+using Domain.ValueObjects;
+namespace Domain.Entities;
 
 /// <summary>
 /// Аптека

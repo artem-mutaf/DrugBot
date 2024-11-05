@@ -1,5 +1,5 @@
 using System.Reflection;
-namespace DrugsBot.Domain.ValueObjects;
+namespace Domain.ValueObjects;
 
 
 
