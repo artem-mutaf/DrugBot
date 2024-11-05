@@ -4,10 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DrugsBot</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Content Include="Domain\Domain.csproj" />
-    </ItemGroup>
 
 </Project>

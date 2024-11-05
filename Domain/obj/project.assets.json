@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RiderProjects\\DrugsBot\\DrugsBot\\DrugsBot.csproj",
-      "projectName": "DrugsBot",
-      "projectPath": "D:\\RiderProjects\\DrugsBot\\DrugsBot\\DrugsBot.csproj",
+      "projectUniqueName": "D:\\RiderProjects\\DrugsBot\\Domain\\Domain.csproj",
+      "projectName": "Domain",
+      "projectPath": "D:\\RiderProjects\\DrugsBot\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\artik\\.nuget\\packages\\",
-      "outputPath": "D:\\RiderProjects\\DrugsBot\\DrugsBot\\obj\\",
+      "outputPath": "D:\\RiderProjects\\DrugsBot\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\artik\\AppData\\Roaming\\NuGet\\NuGet.Config",
