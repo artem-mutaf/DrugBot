@@ -7,5 +7,5 @@ public static class ValidationMessage
     public static string WrongLength = "{PropertyName} должен быть от {min} до {max символов";
     public static string InvalidCharacters = "{PropertyName} не должно содержать специальные символы";
     public static string PositiveNumber = "{PropertyName} должно быть положительным числом";
-    public static string NotCorrect = "{PropertyName} неправильное написание";
+    
 }
