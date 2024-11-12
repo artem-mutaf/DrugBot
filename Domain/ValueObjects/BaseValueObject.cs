@@ -13,6 +13,7 @@ public abstract class BaseValueObject : IEquatable<BaseValueObject>
     /// </summary>
     /// <param name="other">Другой объект для сравнения.</param>
     /// <returns>True, если объекты равны; иначе False.</returns>
+    
     public bool Equals(BaseValueObject? other)
     {
         if (other == null || other.GetType() != GetType())
@@ -53,6 +54,11 @@ public abstract class BaseValueObject : IEquatable<BaseValueObject>
     /// Переопределение метода GetHashCode для вычисления хеш-кода на основе всех полей и свойств.
     /// </summary>
     /// <returns>Хеш-код объекта.</returns>
+    ///Объяснение почему именно используются числа 17 и 31
+    /// Переменная hash инициализируется числом 17. Оно используется как стартовое значение с которого будет начинаться
+    /// вычисление хэш-кода. Это простое число из за этого снижается вероятность коллизий.
+    /// А множитель 31 тоже просто число которое испольщуется для качественного распределения хэш-кодов,
+    /// а так же он дает хорошие результаты по производжителдьности благодаря своей простоте
     public override int GetHashCode()
     {
         int hash = 17;

@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using DrugsBot.Validators;
+
 namespace Domain.Entities;
 
 /// <summary>
@@ -11,6 +14,8 @@ public class Drug : BaseEntity
         Manufacturer = manufacturer;
         CountryCodeId = countryCodeId;
         Country = country;
+
+        Validate();
     }
 
     /// <summary>
@@ -33,4 +38,16 @@ public class Drug : BaseEntity
         
     // Навигационное свойство для связи с DrugItem
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
+
+    private void Validate()
+    {
+        var validator = new DrugValidator();
+        var res = validator.Validate(this);
+
+        if (!res.IsValid)
+        {
+            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
+    }
 }

@@ -1,4 +1,6 @@
 namespace Domain.Entities;
+using System.ComponentModel.DataAnnotations;
+using DrugsBot.Validators;
 
 /// <summary>
 /// Базовый класс для всех сущностей домена, обеспечивающий сравнение по идентификатору.
@@ -16,6 +18,8 @@ public abstract class BaseEntity
     protected BaseEntity()
     { 
         Id = Guid.NewGuid();
+        
+        Validate();
     }
         
     /// <summary>
@@ -67,5 +71,17 @@ public abstract class BaseEntity
     public static bool operator !=(BaseEntity? left, BaseEntity? right)
     {
         return !(left == right);
+    }
+    
+    private void Validate()
+    {
+        var validator = new BaseEntityValidator();
+        var res = validator.Validate(this);
+
+        if (!res.IsValid)
+        {
+            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
     }
 }

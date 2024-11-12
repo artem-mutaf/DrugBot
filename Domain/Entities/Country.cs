@@ -1,4 +1,6 @@
 namespace Domain.Entities;
+using System.ComponentModel.DataAnnotations;
+using DrugsBot.Validators;
 
 /// <summary>
 /// Справочник стран
@@ -14,6 +16,8 @@ public class Country : BaseEntity
     {
         Name = name;
         Code = code;
+        
+        Validate();
     }
 
     /// <summary>
@@ -28,4 +32,16 @@ public class Country : BaseEntity
         
     // Навигационное свойство для связи с препаратами
     public ICollection<Drug> Drugs { get; private set; } = new List<Drug>();
+    
+    private void Validate()
+    {
+        var validator = new CountryValidator();
+        var res = validator.Validate(this);
+
+        if (!res.IsValid)
+        {
+            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
+    }
 }

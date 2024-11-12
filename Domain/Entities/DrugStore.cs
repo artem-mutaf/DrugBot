@@ -1,5 +1,8 @@
 using Domain.ValueObjects;
+using System.ComponentModel.DataAnnotations;
+using DrugsBot.Validators;
 namespace Domain.Entities;
+
 
 /// <summary>
 /// Аптека
@@ -11,6 +14,8 @@ public class DrugStore : BaseEntity
         DrugNetwork = drugNetwork;
         Number = number;
         Address = address;
+        
+        Validate();
     }
 
     /// <summary>
@@ -30,4 +35,16 @@ public class DrugStore : BaseEntity
         
     // Навигационное свойство для связи с DrugItem
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
+    
+    private void Validate()
+    {
+        var validator = new DrugStoreValidator();
+        var res = validator.Validate(this);
+
+        if (!res.IsValid)
+        {
+            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
+    }
 }

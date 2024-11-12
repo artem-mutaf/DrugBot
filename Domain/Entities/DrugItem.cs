@@ -1,4 +1,6 @@
 namespace Domain.Entities;
+using DrugsBot.Validators;
+using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// Связь между препаратом и аптекой
@@ -13,6 +15,8 @@ public class DrugItem : BaseEntity
         Count = count;
         Drug = drug;
         DrugStore = drugStore;
+        
+        Validate();
     }
 
     /// <summary>
@@ -39,4 +43,15 @@ public class DrugItem : BaseEntity
     public Drug Drug { get; private set; }
     public DrugStore DrugStore { get; private set; }
     
+    private void Validate()
+    {
+        var validator = new DrugItemValidator();
+        var res = validator.Validate(this);
+
+        if (!res.IsValid)
+        {
+            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
+    }
 }

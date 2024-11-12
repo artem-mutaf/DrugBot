@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iKHsx7zCSiY=",
+  "dgSpecHash": "7nRKGQPtWys=",
   "success": true,
   "projectFilePath": "D:\\RiderProjects\\DrugsBot\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\artik\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512"
+  ],
   "logs": []
 }
