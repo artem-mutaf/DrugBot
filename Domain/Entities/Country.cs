@@ -5,7 +5,7 @@ using DrugsBot.Validators;
 /// <summary>
 /// Справочник стран
 /// </summary>
-public class Country : BaseEntity
+public class Country : BaseEntity<Country>
 {
     /// <summary>
     /// Конструктор для инициализации страны с названием и кодом.

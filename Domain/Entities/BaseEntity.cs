@@ -1,3 +1,5 @@
+using DrugsBot.Interface;
+
 namespace Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using DrugsBot.Validators;
@@ -5,8 +7,13 @@ using DrugsBot.Validators;
 /// <summary>
 /// Базовый класс для всех сущностей домена, обеспечивающий сравнение по идентификатору.
 /// </summary>
-public abstract class BaseEntity
+public abstract class BaseEntity<T> where T : BaseEntity<T>
 {
+    /// <summary>
+    /// Список событий
+    /// </summary>
+    private readonly List<IDomainEvent> _domainEvents = [];
+    
     /// <summary>
     /// Уникальный идентификатор сущности.
     /// </summary>
@@ -18,10 +25,33 @@ public abstract class BaseEntity
     protected BaseEntity()
     { 
         Id = Guid.NewGuid();
-        
-        Validate();
     }
-        
+    
+    /// <summary>
+    /// Добавить доменное событие
+    /// </summary>
+    /// <param name="domainEvent">Доменное событие</param>
+    protected void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+    /// <summary>
+    /// Получение списка доменных событий
+    /// </summary>
+    /// <returns></returns>
+    public IReadOnlyList<IDomainEvent> GetDomainEvents()
+    {
+        return _domainEvents.AsReadOnly();
+    }
+    /// <summary>
+    /// Очистка доменных событий.
+    /// </summary>
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+    
+    
     /// <summary>
     /// Переопределение метода Equals для сравнения сущностей по идентификатору.
     /// </summary>
@@ -35,7 +65,7 @@ public abstract class BaseEntity
         if (obj is null || obj.GetType() != GetType()) 
             return false;
 
-        var other = (BaseEntity)obj;
+        var other = (BaseEntity<T>)obj;
         return Id.Equals(other.Id);
     }
 
@@ -54,7 +84,7 @@ public abstract class BaseEntity
     /// <param name="left">Левая сущность.</param>
     /// <param name="right">Правая сущность.</param>
     /// <returns>True, если идентификаторы равны; иначе False.</returns>
-    public static bool operator ==(BaseEntity? left, BaseEntity? right)
+    public static bool operator ==(BaseEntity<T>? left, BaseEntity<T>? right)
     {
         if (left is null)
             return right is null;
@@ -68,20 +98,10 @@ public abstract class BaseEntity
     /// <param name="left">Левая сущность.</param>
     /// <param name="right">Правая сущность.</param>
     /// <returns>True, если идентификаторы не равны; иначе False.</returns>
-    public static bool operator !=(BaseEntity? left, BaseEntity? right)
+    public static bool operator !=(BaseEntity<T>? left, BaseEntity<T>? right)
     {
         return !(left == right);
     }
     
-    private void Validate()
-    {
-        var validator = new BaseEntityValidator();
-        var res = validator.Validate(this);
-
-        if (!res.IsValid)
-        {
-            var errors = string.Join(" ", res.Errors.Select(x => x.ErrorMessage));
-            throw new ValidationException(errors);
-        }
-    }
+    
 }

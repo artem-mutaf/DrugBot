@@ -9,7 +9,8 @@ public class CountryValidator: AbstractValidator<Country>
         RuleFor(d => d.Name)
             .NotEmpty().WithMessage(ValidationMessage.NotEmpty)
             .NotNull().WithMessage(ValidationMessage.NotNull)
-            .Matches(@"^[a-zA-Zа-яА-Я]+$").WithMessage(ValidationMessage.InvalidCharacters);
+            .Matches(@"^[a-zA-Zа-яА-Я]+$").WithMessage(ValidationMessage.InvalidCharacters)
+            .Length(2, 100).WithMessage(ValidationMessage.WrongLength);
         RuleFor(d => d.Code)
             .NotEmpty().WithMessage(ValidationMessage.NotEmpty)
             .NotNull().WithMessage(ValidationMessage.NotNull)
