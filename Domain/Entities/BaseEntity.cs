@@ -14,6 +14,7 @@ public abstract class BaseEntity<T> where T : BaseEntity<T>
     /// </summary>
     private readonly List<IDomainEvent> _domainEvents = [];
     
+    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
     /// <summary>
     /// Уникальный идентификатор сущности.
     /// </summary>

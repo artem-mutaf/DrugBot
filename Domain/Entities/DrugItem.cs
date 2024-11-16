@@ -69,6 +69,9 @@ public class DrugItem : BaseEntity<DrugItem>
         if (newCount < 0)
             throw new InvalidOperationException("Количество не может быть отрицательным");
 
+        if (newCount == Count)
+            throw new InvalidOperationException("Количество не изменилось");
+        
         if (newCount != Count)
         {
             var oldCount = Count;
@@ -78,7 +81,5 @@ public class DrugItem : BaseEntity<DrugItem>
         }
         
         Validate();
-        
-        
     }
 }
