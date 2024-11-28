@@ -33,6 +33,13 @@ public class DrugStore : BaseEntity<DrugStore>
     /// Адрес аптеки.
     /// </summary>
     public Address Address { get; private set; }
+
+    public void Update(string drugNetwork, int number, Address address)
+    {
+        DrugNetwork = drugNetwork;
+        Number = number;
+        Address = address;
+    }
         
     // Навигационное свойство для связи с DrugItem
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();

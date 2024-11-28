@@ -29,6 +29,12 @@ public class Country : BaseEntity<Country>
     /// Код страны (например, ISO-код).
     /// </summary>
     public string Code { get; private set; }
+
+    public void Update(string name, string code)
+    {
+        Name = name;
+        Code = code;
+    }
         
     // Навигационное свойство для связи с препаратами
     public ICollection<Drug> Drugs { get; private set; } = new List<Drug>();

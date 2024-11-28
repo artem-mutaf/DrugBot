@@ -36,7 +36,15 @@ public class Drug : BaseEntity<Drug>
         
     // Навигационное свойство для связи с объектом Country
     public Country Country { get; private set; }
-        
+
+
+    public void Update(string name, string manufacturer, string countryCodeId, Country country)
+    {
+        Name = name;
+        Manufacturer = manufacturer;
+        CountryCodeId = countryCodeId;
+        Country = country;
+    }
     // Навигационное свойство для связи с DrugItem
     public ICollection<DrugItem> DrugItems { get; private set; } = new List<DrugItem>();
 

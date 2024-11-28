@@ -45,8 +45,16 @@ public class DrugItem : BaseEntity<DrugItem>
     // Навигационные свойства
     public Drug Drug { get; private set; }
     public DrugStore DrugStore { get; private set; }
-    
-    
+
+    public void Update(Guid drugId, Guid drugStoreId, decimal cost, double count, Drug drug, DrugStore drugStore)
+    {
+        DrugId = drugId;
+        DrugStoreId = drugStoreId;
+        Cost = cost;
+        Count = count;
+        Drug = drug;
+        DrugStore = drugStore;
+    }
     
     private void Validate()
     {

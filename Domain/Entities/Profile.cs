@@ -24,7 +24,7 @@ public class Profile : BaseEntity<Profile>
     /// <summary>
     /// Guid.NewGuid() - Для создания нового глобального уникального идентификатора
     /// </summary>
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; private set; } = Guid.NewGuid();
     
     /// <summary>
     /// Идентификатор из телеграмм
@@ -40,6 +40,13 @@ public class Profile : BaseEntity<Profile>
     /// Email для рассылки на почту
     /// </summary>
     public  string Email { get; set; }
+
+    public void Update(Guid id, string externalId, string email)
+    {
+        Id = id;
+        ExternalId = externalId;
+        Email = email;
+    }
     
     private void Validate()
     {
